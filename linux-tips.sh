@@ -22,8 +22,16 @@ echo
 read -p 'Show next tip or disable totd functionality?(y/n/disable): ' answer
 if [ $answer == "disable" ]
 then
-    script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
-    sed -i "s|$script_path|# $script_path|" ~/.bashrc
+    read -p 'Disable for all or certain user?(all/user): ' answer
+    if [ $answer == "all" ]
+    then
+        script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
+        sed -i "s|$script_path|# $script_path|" ~/.bashrc
+    elif [ $answer == "user" ]
+    then
+        read -p 'Name of the user: ' name
+        setfacl -m u:$name:--- $script_path
+    fi
 fi
 
 while [ $answer == "y" ]
@@ -46,8 +54,16 @@ do
     read -p 'Show next tip or disable totd functionality?(y/n/disable): ' answer
     if [ $answer == "disable" ]
     then
-        script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
-        sed -i "s|$script_path|# $script_path|" ~/.bashrc
+        read -p 'Disable for all or certain user?(all/user): ' answer
+        if [ $answer == "all" ]
+        then
+            script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
+            sed -i "s|$script_path|# $script_path|" ~/.bashrc
+        elif [ $answer == "user" ]
+        then
+            read -p 'Name of the user: ' name
+            setfacl -m u:$name:--- $script_path
+        fi
     fi
 done
 if [ $tip -eq 10 ]

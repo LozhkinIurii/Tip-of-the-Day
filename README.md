@@ -9,7 +9,7 @@ Need to remember to give the script file necessary permissions (e.g. chmod 755 ~
 
 The tips folow each other one by one. When tip #10 is shown, then it starts all over again from the tip #1.
 
-When an user types _disable_ when asked to continue or to disable functionality, _tip of the day_ functionality will be disabled and won't be displayed anymore. It can be restored by just uncommenting the script path in the _~/.bashrc_ file.
+When an user types _disable_ when asked to continue or to disable functionality, _tip of the day_ will be disabled for all or for certain user, depending on chosen option. The functionality for all can be restored by just uncommenting the script path in the _~/.bashrc_ file.
 
 ## Example of how script works:
 
