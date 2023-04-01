@@ -1,0 +1,7 @@
+The mkdir command allows you to make a directory while the rmdir removes a directory. To make a directory, you would type:
+
+      mkdir ~/public_html
+
+There is also very useful option -p, which makes all the directories if they do not exist yet:
+
+      mkdir -p ~/tmp/1/2/3/4

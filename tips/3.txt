@@ -1,0 +1,14 @@
+The find command is similar to Windows graphical search, except that it is much more powerful. In other systems there may be commands like locate(1) and glimpse(1) to help searching files faster by using pre-gnerated index database files. However the find(1) command is the only one that comes standard in all systems.
+Find all text files recursively starting from current directory:
+
+      $ find . -name "*.txt" -print
+             |
+             Where to start finding.
+             "." = From current directory
+
+Find files that haven't been accessed/modified for more than 10 days:
+
+      $ find $HOME -atime +10 -print
+      $ find $HOME -mtime +10 -print
+
+By default the find command scans the whole file system, regardless of the files, devices or directories. You can limit the search to certain types. See more types in find(1) manual page.

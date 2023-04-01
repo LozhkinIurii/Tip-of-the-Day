@@ -1,0 +1,10 @@
+Pipelines (see POSIX) connect ouutput from command1 to command2. It allows reading input without the need of temporary file. A pipeline connects processes by making that stdout of one command the stdin of the other. One command reads input directly from the output of another, so there is no need for using any temporary files. Examine that manual page of the cut(1) command that can be used to get pieces of the input. The most commonly used option is -c which works by counting the character positions.
+
+      $ date > file.tmp         # (1) using temporary file
+      $ cut -c1-3 file.tmp
+      Tue
+
+      $ date | cut -c1-3        # (2) pipeline, no temporary files
+      Tue
+
+This command line is executed by two separate processes, one for date(1) and one for the cut(1) command. The processes are created in a special way that connects the first standard output with second standard input. There can be any number of pipelines involved. Pipelines show the flexibility of the design at its best. A process is independent of the data it uses, so it doesn't care where its input stream come from, even it it is another process. In fact a pipeline is special kind of redirection.

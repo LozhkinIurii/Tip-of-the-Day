@@ -1,90 +1,60 @@
 #! /bin/bash
 
-if  ! [[ -s ~/tip-count.txt && $(cat ~/tip-count.txt) =~ ^([1-9]|10)$ ]]
-then
-    echo 1 > ~/tip-count.txt
-fi
-
-tip=$(cat ~/tip-count.txt)
+show_tip(){
+tip_count_path=/opt/tip_of_the_day_bash_script/tip-count.txt
+totd_tips_path=/opt/tip_of_the_day_bash_script/tips
+tip=$(cat $tip_count_path)
 tip_num="\033[93mTip number $tip\033[0m"
+echo "==============================================================="
 echo Tip of the day:
 echo -e "$tip_num"
 echo
-cat ~/tips/${tip}.txt
+cat $totd_tips_path/${tip}.txt
 if [ $tip -eq 10 ]
 then
-    echo 1 > ~/tip-count.txt
+    echo 1 > $tip_count_path
 else
-    echo $(($tip+1)) > ~/tip-count.txt
+    echo $(($tip+1)) > $tip_count_path
 fi
 echo
-echo
-read -p 'Show next tip or disable totd functionality?(y/n/disable): ' answer
-if [ $answer == "disable" ]
-then
-    if [ $(whoami) == $(getfacl ~/server-technologies-part-2/linux-tips.sh | sed -n "s/.*owner: //p") ]
-    then
-        echo
-        read -p 'Disable for all or certain user?(all/user): ' answer
-        if [ $answer == "all" ]
-        then
-            script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
-            sed -i "s|$script_path|# $script_path|" ~/.bashrc
-        elif [ $answer == "user" ]
-        then
-            read -p 'Name of the user: ' name
-            setfacl -m u:$name:--- $script_path
-        fi
-    else
-        script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
-        sed -i "s|$script_path|# $script_path|" ~/.bashrc
-    fi
-fi
-
+echo "==============================================================="
+read -p "Press 'y' to show next tip, press any other button to quit: " answer
 while [ $answer == "y" ]
 do
-    echo
-    tip=$(cat ~/tip-count.txt)
+    clear
+    tip=$(cat $tip_count_path)
     tip_num="\033[93mTip number $tip\033[0m"
+    echo "================================================================="
     echo -e "$tip_num"
-    cat ~/tips/${tip}.txt
-
+    cat $totd_tips_path/${tip}.txt
     if [ $tip -eq 10 ]
     then
-        echo 1 > ~/tip-count.txt
+        echo 1 > $tip_count_path
     else
-        echo $(($tip+1)) > ~/tip-count.txt
+        echo $(($tip+1)) > $tip_count_path
     fi
 
     echo
-    echo
-    read -p 'Show next tip or disable totd functionality?(y/n/disable): ' answer
-    if [ $answer == "disable" ]
-    then
-        if [ $(whoami) == $(getfacl ~/server-technologies-part-2/linux-tips.sh | sed -n "s/.*owner: //p") ]
-        then
-            echo
-            read -p 'Disable for all or certain user?(all/user): ' answer
-            if [ $answer == "all" ]
-            then
-                script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
-                sed -i "s|$script_path|# $script_path|" ~/.bashrc
-            elif [ $answer == "user" ]
-            then
-                read -p 'Name of the user: ' name
-                setfacl -m u:$name:--- $script_path
-            fi
-        else
-            script_path=$(sed -n '/linux-tips\.sh/p' ~/.bashrc)
-            sed -i "s|$script_path|# $script_path|" ~/.bashrc
-        fi
-    fi
+    echo "================================================================="
+    read -p "Press 'y' to show next tip, press any other button to quit: " answer
 done
+
 if [ $tip -eq 10 ]
 then
-    echo 1 > ~/tip-count.txt
+    echo 1 > $tip_count_path
 else
-    echo $(($tip+1)) > ~/tip-count.txt
+    echo $(($tip+1)) > $tip_count_path
 fi
 echo
 echo
+}
+
+
+if [ ! -f .notips ]
+then
+    answer="y"
+    while [ $answer == "y" ]
+    do
+        show_tip
+    done
+fi

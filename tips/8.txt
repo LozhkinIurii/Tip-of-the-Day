@@ -1,0 +1,30 @@
+STDOUT
+      ........
+      >   FILE        Write to the file
+      1>  FILE        Same, using explicit file descriptor number
+      >>  FILE        Append to the file
+      1>> FILE        Same
+
+      STDERR
+      ........
+      2>  FILE        Redirect to the file
+      2>> FILE        Append to the file
+
+      STDOUT AND STDERR
+      .................
+      >&2             Redirect [fd 1] to fd 2; echo "test" >&2
+      2>&1 FILE       Redirect fd 2 to fd 1. (stderr comes from stdout)
+      &> FILE         Redirect both stdout and stdout to FILE
+
+      STDIN
+      .......
+      < FILE          Open FILE and send the contents to stdout
+
+      << HERE         Read input until here-document is terminated. The
+                      word that terminates the input is the word
+                      after "<". An example:
+
+                      $ cat << 'EOF'
+                      > input line 1
+                      > input line 2
+                      >EOF

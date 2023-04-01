@@ -1,0 +1,11 @@
+The cat(1) command copies its stdin to its stdout. This means that both standard streams can be redirected in the same command. Commands that let both their standard input and standard output to be redirected are called filters. For example to copy a file with the cat(1) command, you can use either of these choices:
+
+      $ cat < file-source > file-destination
+            |             |
+            |             Shell connects STDOUT
+            Shell connects STDIN
+
+
+      $ cat file-source      > file-destination
+            |                |
+            cat open FILE    Shell connects STDOUT

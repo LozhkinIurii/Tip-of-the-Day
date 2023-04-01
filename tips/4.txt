@@ -1,0 +1,11 @@
+The rm(1) command stands for remove and it is the means to permanently delete your files. To remove a file you type:
+
+      $ rm file1
+
+To remove many files, list them in the command
+
+      $ rm file1 file2 file2
+
+Or you can remove all files starting with "file":
+
+      $ rm file*

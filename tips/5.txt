@@ -1,0 +1,11 @@
+‘mv’ command stands for "move" and it is used to move files within your directory structure or to rename your files. To move (rename) your files, you would type:
+
+      $  mv file file.txt
+
+The moving of files within directories is exactly the same as in the copy (cp) command.
+
+      $ mv ~/tmp/file ~/tmp/file.txt
+
+Moving directories is just the same, here the tmp is renamed to tmp2
+
+      $ mv ~/tmp ~/tmp2

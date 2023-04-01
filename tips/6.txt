@@ -1,0 +1,11 @@
+The cp(1) command is used to copy files to other filenames or to copy them from one directory to another directory. To copy a file to another filename (the file test to test2, for example), you type:
+
+      $ cp test test2
+
+To copy a file from one directory to another. For example, the file test from your home directory into the $HOME/tmp directory you would type:
+
+      $ cp test ~/tmp/
+
+Another useful point to know in copying files to or from directories is that you can copy all the files at one time using a * wildcard with the command. For example to copy all the files from one directory(1) to another directory(2), you would type:
+
+      $ cp ~/tmp/1/* ~/tmp/2/      # Directories MUST EXIST

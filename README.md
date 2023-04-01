@@ -2,14 +2,12 @@ The script is made as a part of Server Technologies course in Tampere University
 
 # Tip of the day
 
-To enable "Tip of the day" feature with this very solution, it is necessary to create folder _tips_ in home directory (i.e. path must be _~/tips_), to put there ten tips (one tip into one file) and to name them with numbers from 1 to 10, e.g. 1.txt, 2.txt .. 10.txt.
-
-Also, it is needed to add the script path into _~/.bashrc_ file, so that it looks, e.g., _~/linux-tips.sh_, in order to initiate it.
-Need to remember to give the script file necessary permissions (e.g. chmod 755 ~/linux-tips.sh).
+To enable "Tip of the day" feature with this very solution, it is necessary to create folder _tips_ and move _linux-tips.sh_ script into */opt/tip_of_the_day_bash_script/*, then to put into _tips_ folder ten tips (one tip into one file) and to name them with numbers from 1 to 10, e.g. 1.txt, 2.txt .. 10.txt. Then create symbolic link to _linux-tips.sh_ (*ln -s /opt/tip_of_the_day_bash_script/linux-tips.sh linux-tips.sh* ) inside */etc/profile.d/* in order to launch the script each time an user logs in.
 
 The tips folow each other one by one. When tip #10 is shown, then it starts all over again from the tip #1.
 
-When an user types _disable_ when asked to continue or to disable functionality, _tip of the day_ will be disabled for all or for certain user, depending on chosen option. The functionality for all can be restored by just uncommenting the script path in the _~/.bashrc_ file.
+To disable tip of the day functionality, user needs to create file _~/.notips_ (if from root, then *~user_name/.notips*).
+
 
 ## Example of how script works:
 
@@ -49,4 +47,4 @@ When an user types _disable_ when asked to continue or to disable functionality,
     Show next tip or disable totd functionality?(y/n/disable): n
 
 
-    yuloz@Yulo:~$
+    user@User:~$

@@ -1,0 +1,8 @@
+The shell contains a separate set of metacharacters that remove the special meaning of other shell metacharacters. When a character loses its meta-meaning, it is said to be quoted. Shell offers backslash (\) to quote any single character and in single quotes A command like cat file1&2 would result several errors, quoting the ampersand with backslash returns the original file name. As before, the shell removes the quoting metacharacters from the command line before executing it.
+
+      echo "test" > file1\&2
+
+      cat  file1\&2
+
+      echo "invisible" > \ .txt
+      cat \ .txt

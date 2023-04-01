@@ -1,0 +1,12 @@
+The typical escape sequences are below.
+
+      \a      Alert, bell
+      \b      backspace
+      \c      suppress (don't print) trailing newline
+      \f      form feed
+      \n      newline
+      \r      carriage return
+      \t      horizontal tab
+      \v      vertical tab
+      \\      regular backslash
+      \nnn    Octal ascii char, e.g. octal 101, decimal 65 is char 'A'
